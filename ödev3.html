@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+		<title>Omer Faruk CENİKLİ 2019280020</title>
+</head>
+<body>
+<h1>Omer Faruk CENİKLİ 2019280020</h1>
+<input type="file" id="fileInput">
+<p id="demo"></p>
+<p id="demoo"></p>
+<p id="demooo"></p>
+<p id="demoooo"></p>
+<p id="yuksek_dusuk"></p>
+<p id="ortalama"></p>
+
+
+<textarea id=t></textarea><br>
+<button onclick=saveTextAsFile(t.value,'download.txt')>Download</button>
+
+<script>
+var fileInput = document.getElementById('fileInput');
+var fileDisplayArea = document.getElementById('fileDisplayArea');
+
+fileInput.addEventListener('change', function(e) {
+    var file = fileInput.files[0];
+    var textType = /text.*/;
+    
+    if (file.type.match(textType)) {
+        var reader = new FileReader();
+        
+        reader.onload = function(e) {
+            var content = reader.result;
+            
+       
+          var xxxx = (content);
+          var sonuc1 = xxxx.split("");
+          console.log(sonuc1);
+          sonuc1.toString();
+          
+          var soru_sayısı = sonuc1[0].concat(sonuc1[1],sonuc1[2]);
+          console.log(soru_sayısı);
+          
+          var cevap_anahtari = sonuc1[5].concat(sonuc1[7],sonuc1[9],sonuc1[11],sonuc1[13],sonuc1[15],sonuc1[17],sonuc1[19],sonuc1[21],sonuc1[23]);
+          console.log(cevap_anahtari);
+          
+         
+         var kisicevap1 =           sonuc1[37].concat(sonuc1[41],sonuc1[40],sonuc1[42],sonuc1[44],sonuc1[46],sonuc1[48],sonuc1[50],sonuc1[52],sonuc1[54],sonuc1[56]);
+          console.log(kisicevap1);
+          
+         var kisicevap2 = sonuc1[68].concat(sonuc1[69],sonuc1[70],sonuc1[72],sonuc1[74],sonuc1[76],sonuc1[78],sonuc1[80],sonuc1[82],sonuc1[84]);
+          console.log(kisicevap2);
+             
+          var kisicevap3 = sonuc1[98].concat(sonuc1[100],sonuc1[102],sonuc1[104],sonuc1[106],sonuc1[107],sonuc1[108],sonuc1[110],sonuc1[112],sonuc1[114]);
+          console.log(kisicevap3);
+          
+          var kisicevap4 = sonuc1[128].concat(sonuc1[130],sonuc1[132],sonuc1[134],sonuc1[136],sonuc1[138],sonuc1[140],sonuc1[141],sonuc1[143],sonuc1[144]);
+          console.log(kisicevap4);
+             
+var kisipuan1 = 0
+var kisipuan2 = 0
+var kisipuan3 = 0
+var kisipuan4 = 0
+
+for ( var i = 0; i < cevap_anahtari.length; i++) {
+if (cevap_anahtari[i] == kisicevap1[i]) {
+document.getElementById("demo").innerHTML = "Aldığı puan :" + (kisipuan1 += 4);
+} 
+else if(kisicevap1[i] == ",") {
+document.getElementById("demo").innerHTML = "Aldığı puan :" + (kisipuan1 += 0);
+}
+  else {
+    document.getElementById("demo").innerHTML = "Aldığı puan :" + (kisipuan1 -= 1);
+  }
+}         
+////////////////////////////
+for ( var i = 0; i < cevap_anahtari.length; i++) {
+if (cevap_anahtari[i] == kisicevap2[i]) {
+document.getElementById("demoo").innerHTML = "Aldığı puan :" + (kisipuan2 += 4);
+} 
+else if(kisicevap2[i] == ",") {
+document.getElementById("demoo").innerHTML = "Aldığı puan :" + (kisipuan2 += 0);
+}
+  else {
+    document.getElementById("demoo").innerHTML = "Aldığı puan :" + (kisipuan2 -= 1);
+  }
+}  
+////////////////////////////
+for ( var i = 0; i < cevap_anahtari.length; i++) {
+if (cevap_anahtari[i] == kisicevap3[i]) {
+document.getElementById("demooo").innerHTML = "Aldığı puan :" + (kisipuan3 += 4);
+} 
+else if(kisicevap3[i] == ",") {
+document.getElementById("demooo").innerHTML = "Aldığı puan :" + (kisipuan3 += 0);
+}
+  else {
+    document.getElementById("demooo").innerHTML = "Aldığı puan :" + (kisipuan3 -= 1);
+  }
+}  
+/////////////////////////////
+for ( var i = 0; i < cevap_anahtari.length; i++) {
+if (cevap_anahtari[i] == kisicevap4[i]) {
+document.getElementById("demoooo").innerHTML = "Aldığı puan :" + (kisipuan4 += 4);
+} 
+else if(kisicevap4[i] == ",") {
+document.getElementById("demoooo").innerHTML = "Aldığı puan :" + (kisipuan4 += 0);
+}
+  else {
+    document.getElementById("demoooo").innerHTML = "Aldığı puan :" + (kisipuan4 -= 1);
+  }
+}  
+          
+          
+var en_yuksek_dusuk_not = [kisipuan1,kisipuan2,kisipuan3,kisipuan4];
+
+Array.prototype.max = function() {
+  return Math.max.apply(null, this);
+};
+
+Array.prototype.min = function() {
+  return Math.min.apply(null, this);
+};
+
+document.getElementById("yuksek_dusuk").innerHTML = "Max deger: "+en_yuksek_dusuk_not.max() + "\nMin deger: "+ en_yuksek_dusuk_not.min();
+ 
+          
+const average = en_yuksek_dusuk_not => en_yuksek_dusuk_not.reduce((prev, curr) => prev + curr) / en_yuksek_dusuk_not.length;
+average(en_yuksek_dusuk_not);       
+          
+document.getElementById("t").innerHTML = "Ortalama: " + (average(en_yuksek_dusuk_not));
+          
+        }
+        
+        reader.readAsText(file);	
+    } 
+});
+   function saveTextAsFile(textToWrite, fileNameToSaveAs)
+    {
+    	var textFileAsBlob = new Blob([textToWrite], {type:'text/plain'}); 
+    	var downloadLink = document.createElement("a");
+    	downloadLink.download = fileNameToSaveAs;
+    	downloadLink.innerHTML = "Download File";
+    	if (window.webkitURL != null)
+    	{
+    	
+    		downloadLink.href = window.webkitURL.createObjectURL(textFileAsBlob);
+    	}
+    	else
+    	{
+    
+    		downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
+    		downloadLink.onclick = destroyClickedElement;
+    		downloadLink.style.display = "none";
+    		document.body.appendChild(downloadLink);
+    	}
+    
+    	downloadLink.click();
+    }
+	
+		//Referance
+		//w3schools.com
+		//https://developer.mozilla.org/tr/docs/Web/JavaScript/Reference/Global_Objects/Array/concat
+		//http://www.yazilimmutfagi.com/index.php/2009/03/13/javascript-ile-string-islemleri-indexof-lastindexof-charat-length-split-tolowercase-touppe/
+		//http://ahmetardahanli.com/javascript-split-ve-join-metodlari
+</script>
+</body>
+</html>
